@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'second_splash_screen.dart';
 
 class FirstSplashScreen extends StatefulWidget {
@@ -25,8 +26,8 @@ class _FirstSplashScreenState extends State<FirstSplashScreen> {
       body: Center(
         child: Image.asset(
           'assets/aayu_logo_brown.jpg',
-          width: 200,
-          height: 200,
+          width: 205.w,
+          height: 210.h,
         ),
       ),
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:aayu_app/shared/components/white_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondSplashScreen extends StatelessWidget {
   @override
@@ -7,82 +9,61 @@ class SecondSplashScreen extends StatelessWidget {
       backgroundColor: Color(0xFF82553a),
       body: Stack(
         children: [
-          Center(
+          Positioned(
+            bottom: 450,
+            left: 20,
+            right: 20,
             child: Image.asset(
               'assets/aayu_logo_white.png',
-              width: 150,
-              height: 150,
+              height: 140.h,
+              width: 130.w,
             ),
           ),
           Positioned(
-            bottom: 100,
+            bottom: 10,
             left: 20,
             right: 20,
             child: Column(
+              crossAxisAlignment:
+                  CrossAxisAlignment.stretch, // Ensures full width
               children: [
-                Text(
-                  'Book Your Flow : Pilates Made Easy',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: 10),
+                Text('Book Your Flow :',
+                    style: TextStyle(
+                      color: Color(0xFFD8CAC2),
+                      fontSize: 31.sp, // Adjust font size to match
+                      fontWeight: FontWeight.w900,
+                    ),
+                    textAlign: TextAlign.center),
+                Text('Pilates Made Easy',
+                    style: TextStyle(
+                      color: Color(0xFFD8CAC2),
+                      fontSize: 31.sp,
+                      fontWeight: FontWeight.w900,
+                    ),
+                    textAlign: TextAlign.center),
+                SizedBox(height: 10.h),
                 Text(
                   'Start your fitness journey with us, schedule classes daily and hit the gym.',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
+                    color: Color(0xFFD8CAC2),
+                    fontSize: 14.sp,
+                    height: 1.5,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 30),
-                CustomButton(
+                SizedBox(height: 30.h),
+                WhiteButton(
+                  height: ScreenUtil().screenHeight * 0.06,
+                  width: double.infinity,
                   text: 'Continue to Login',
                   onPressed: () {
-                    // TODO: Navigate to login screen or perform any action
+                    // TODO: Handle login navigation
                   },
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// Reusable Button Widget
-class CustomButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-
-  const CustomButton({
-    Key? key,
-    required this.text,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white, // White button color as per screenshot
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10), // Rounded button
-        ),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 18,
-          color: Colors.brown,
-          fontWeight: FontWeight.bold,
-        ),
       ),
     );
   }
