@@ -29,5 +29,7 @@ flutter:
   assets:
     - assets/aayu_logo_white.png
     - assets/aayu_logo_brown.jpg
+    - assets/google_logo.png
+    - assets/apple_logo.png
     
     

@@ -23,7 +23,7 @@ class _FirstSplashScreenState extends State<FirstSplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.neutralBackgroundColor,
+      backgroundColor: AppColors.primaryWhiteColor,
       body: Center(
         child: Image.asset(
           'assets/aayu_logo_brown.jpg',

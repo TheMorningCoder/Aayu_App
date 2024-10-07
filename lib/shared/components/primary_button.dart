@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class WhiteButton extends StatelessWidget {
+class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final double width;
   final double height;
+  final Color buttonColor;
+  final Color buttonTextColor;
 
-  const WhiteButton({
+  const PrimaryButton({
     Key? key,
     required this.text,
     required this.onPressed,
     required this.width,
     required this.height,
+    required this.buttonColor,
+    required this.buttonTextColor,
   }) : super(key: key);
 
   @override
@@ -22,19 +27,19 @@ class WhiteButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(5), // Rounded corners
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(5),
           border: Border.all(
-            color: Colors.grey, // Optional border styling
+            color: Colors.grey,
           ),
         ),
         alignment: Alignment.center,
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 18,
-            color: Colors.brown,
-            fontWeight: FontWeight.bold,
+            fontSize: 16.sp,
+            color: buttonTextColor,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
