@@ -1,3 +1,4 @@
+import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'second_splash_screen.dart';
@@ -22,7 +23,7 @@ class _FirstSplashScreenState extends State<FirstSplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.neutralBackgroundColor,
       body: Center(
         child: Image.asset(
           'assets/aayu_logo_brown.jpg',

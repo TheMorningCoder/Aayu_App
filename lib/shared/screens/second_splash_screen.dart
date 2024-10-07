@@ -1,3 +1,4 @@
+import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:aayu_app/shared/components/white_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +7,7 @@ class SecondSplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF82553a),
+      backgroundColor: AppColors.primaryBrownColor,
       body: Stack(
         children: [
           Positioned(
@@ -29,14 +30,14 @@ class SecondSplashScreen extends StatelessWidget {
               children: [
                 Text('Book Your Flow :',
                     style: TextStyle(
-                      color: Color(0xFFD8CAC2),
+                      color: AppColors.lighBeigeColor,
                       fontSize: 31.sp, // Adjust font size to match
                       fontWeight: FontWeight.w900,
                     ),
                     textAlign: TextAlign.center),
                 Text('Pilates Made Easy',
                     style: TextStyle(
-                      color: Color(0xFFD8CAC2),
+                      color: AppColors.lighBeigeColor,
                       fontSize: 31.sp,
                       fontWeight: FontWeight.w900,
                     ),
@@ -45,7 +46,7 @@ class SecondSplashScreen extends StatelessWidget {
                 Text(
                   'Start your fitness journey with us, schedule classes daily and hit the gym.',
                   style: TextStyle(
-                    color: Color(0xFFD8CAC2),
+                    color: AppColors.lighBeigeColor,
                     fontSize: 14.sp,
                     height: 1.5,
                   ),
