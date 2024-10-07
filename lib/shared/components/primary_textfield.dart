@@ -35,10 +35,13 @@ class PrimaryTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: AppColors.bodyNeutralColor),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: AppColors.bodyNeutralColor),
-            ),
+            border: InputBorder.none,
+            fillColor: AppColors.textFieldColor,
+            filled: true,
+            // border: OutlineInputBorder(
+            //   borderRadius: BorderRadius.circular(8),
+            //   borderSide: BorderSide(color: AppColors.bodyNeutralColor),
+            // ),
           ),
         ),
       ],

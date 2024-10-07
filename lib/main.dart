@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Pilates Booking App',
           theme: ThemeData(
+            fontFamily: 'Poppins',
             colorScheme:
                 ColorScheme.fromSeed(seedColor: AppColors.primaryBrownColor),
             useMaterial3: true,

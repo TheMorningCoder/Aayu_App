@@ -12,9 +12,9 @@ class SecondSplashScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-            bottom: 450,
-            left: 20,
-            right: 20,
+            bottom: 370.h,
+            left: 20.w,
+            right: 20.w,
             child: Image.asset(
               'assets/aayu_logo_white.png',
               height: 140.h,
@@ -22,9 +22,9 @@ class SecondSplashScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 10,
-            left: 20,
-            right: 20,
+            bottom: 18.h,
+            left: 20.w,
+            right: 20.w,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

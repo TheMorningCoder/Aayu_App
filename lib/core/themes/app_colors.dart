@@ -8,4 +8,5 @@ class AppColors {
   static const Color blueLinkColor = Color(0xFF3793FF);
   static const Color bodyNeutralColor = Color(0xFF8F8F8F);
   static const Color titleHeadingColor = Color(0xFF333333);
+  static const Color textFieldColor = Color(0xFFF7F7F7);
 }

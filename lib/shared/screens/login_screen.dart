@@ -26,8 +26,8 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'Login',
                   style: TextStyle(
-                    fontSize: 28.sp,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.w500,
                     color: AppColors.titleHeadingColor,
                   ),
                   textAlign: TextAlign.center,
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   'Hi welcome back, you’ve been missed',
                   style: TextStyle(
-                    fontSize: 16.sp,
+                    fontSize: 14.sp,
                     color: AppColors.bodyNeutralColor,
                   ),
                   textAlign: TextAlign.center,
