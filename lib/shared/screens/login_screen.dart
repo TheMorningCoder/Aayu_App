@@ -1,5 +1,6 @@
 import 'package:aayu_app/core/routes/routes.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
+import 'package:aayu_app/shared/components/combined_widget.dart';
 import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:aayu_app/shared/components/primary_textfield.dart';
 import 'package:aayu_app/shared/providers/login_providers.dart';
@@ -28,11 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: Consumer<LoginProvider>(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: true,
+        body: Consumer<LoginProvider>(
           builder: (context, loginProvider, child) {
             return SingleChildScrollView(
               child: Padding(
@@ -168,35 +169,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     SizedBox(height: 28.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Nowhere?",
-                          style: TextStyle(
-                            color: AppColors.bodyNeutralColor,
-                            fontSize: 12.sp,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, Routes.signUpScreen);
-                          },
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                color: AppColors.blueLinkColor,
-                                fontSize: 12.sp,
-                                decoration: TextDecoration.underline,
-                                decorationColor: AppColors.blueLinkColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    CombinedWidget(
+                        simpleText: 'Nowhere?',
+                        hyperLinkText: 'Sign Up',
+                        onHyperLinkClick: () {
+                          Navigator.pushNamed(context, Routes.signUpScreen);
+                        }),
                   ],
                 ),
               ),

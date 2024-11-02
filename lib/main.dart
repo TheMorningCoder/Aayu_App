@@ -1,6 +1,7 @@
 import 'package:aayu_app/core/routes/routes.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/shared/providers/login_providers.dart';
+import 'package:aayu_app/shared/providers/signup_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => LoginProvider()),
+        ChangeNotifierProvider(create: (_) => SignUpProvider()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
