@@ -5,6 +5,7 @@ import 'package:aayu_app/shared/components/primary_textfield.dart';
 import 'package:aayu_app/shared/providers/login_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -42,19 +43,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text(
                       'Login',
-                      style: TextStyle(
-                        fontSize: 26.sp,
-                        fontWeight: FontWeight.w500,
+                      style: GoogleFonts.poppins(
+                        fontSize: 20.sp,
                         color: AppColors.titleHeadingColor,
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w600,
+                        height: 1.3,
                       ),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 8.h),
                     Text(
                       'Hi welcome back, you’ve been missed',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14.sp,
                         color: AppColors.bodyNeutralColor,
+                        fontStyle: FontStyle.normal,
+                        height: 1.5,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -87,7 +92,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         TextButton(
                           onPressed: () {
-                            // Handle forgot password action
+                            Navigator.pushNamed(
+                                context, Routes.forgetPasswordScreen);
                           },
                           child: Text(
                             'Forget Password',
@@ -173,20 +179,22 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         TextButton(
-                            onPressed: () {
-                              // Handle sign-up action
-                            },
-                            child: TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                    color: AppColors.blueLinkColor,
-                                    fontSize: 12.sp,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.blueLinkColor,
-                                  ),
-                                ))),
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.signUpScreen);
+                          },
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                color: AppColors.blueLinkColor,
+                                fontSize: 12.sp,
+                                decoration: TextDecoration.underline,
+                                decorationColor: AppColors.blueLinkColor,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],

@@ -3,6 +3,7 @@ import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/shared/providers/login_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Pilates Booking App',
             theme: ThemeData(
-              fontFamily: 'Poppins',
+              textTheme: GoogleFonts.poppinsTextTheme(),
               colorScheme:
                   ColorScheme.fromSeed(seedColor: AppColors.primaryBrownColor),
               useMaterial3: true,

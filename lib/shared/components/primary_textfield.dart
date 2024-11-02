@@ -1,6 +1,7 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PrimaryTextField extends StatefulWidget {
   final String label;
@@ -44,10 +45,12 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
       children: [
         Text(
           widget.label,
-          style: TextStyle(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w500,
-              color: AppColors.titleHeadingColor),
+          style: GoogleFonts.poppins(
+            fontSize: 14.sp,
+            color: AppColors.titleHeadingColor,
+            fontStyle: FontStyle.normal,
+            height: 1.5,
+          ),
         ),
         SizedBox(height: 8),
         TextField(
@@ -55,7 +58,11 @@ class _PrimaryTextFieldState extends State<PrimaryTextField> {
           obscureText: _obscureText,
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: TextStyle(color: AppColors.bodyNeutralColor),
+            hintStyle: GoogleFonts.poppins(
+              color: AppColors.bodyNeutralColor,
+              height: 1.5,
+              fontSize: 14.sp,
+            ),
             fillColor: AppColors.textFieldColor,
             filled: true,
             border: InputBorder.none,
