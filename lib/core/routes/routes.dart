@@ -1,6 +1,7 @@
 import 'package:aayu_app/shared/screens/first_splash_screen.dart';
 import 'package:aayu_app/shared/screens/forget_password_screen.dart';
 import 'package:aayu_app/shared/screens/login_screen.dart';
+import 'package:aayu_app/shared/screens/reset_password_screen.dart';
 import 'package:aayu_app/shared/screens/second_splash_screen.dart';
 import 'package:aayu_app/shared/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class Routes {
   static const String secondSplash = '/second-splash';
   static const String loginScreen = '/login-screen';
   static const String forgetPasswordScreen = '/forget-password-screen';
+  static const String resetPasswordScreen = '/reset-password-screen';
   static const String signUpScreen = '/signup-screen';
   static const String adminDashboard = '/admin-dashboard';
   static const String userDashboard = '/user-dashboard';
@@ -31,6 +33,9 @@ class RouteGenerator {
 
       case Routes.forgetPasswordScreen:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
+
+      case Routes.resetPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
 
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
