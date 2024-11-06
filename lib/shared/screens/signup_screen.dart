@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:aayu_app/core/routes/routes.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/shared/components/combined_widget.dart';
@@ -95,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: true,
         body: Consumer<SignUpProvider>(
-          builder: (context, loginProvider, child) {
+          builder: (context, signupProvider, child) {
             return SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16.w, 40.h, 16.w, 2.h),
@@ -193,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: 'Sign Up',
                       onPressed: () {
                         if (isDataValid()) {
-                          Navigator.pushNamed(context, Routes.loginScreen);
+                          Navigator.pushNamed(context, Routes.userDashboard);
                         }
                       },
                       width: double.infinity,

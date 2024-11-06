@@ -1,3 +1,4 @@
+import 'package:aayu_app/modules/user/screens/user_dashboard.dart';
 import 'package:aayu_app/shared/screens/first_splash_screen.dart';
 import 'package:aayu_app/shared/screens/forget_password_screen.dart';
 import 'package:aayu_app/shared/screens/login_screen.dart';
@@ -39,6 +40,9 @@ class RouteGenerator {
 
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
+
+      case Routes.userDashboard:
+        return MaterialPageRoute(builder: (_) => const UserDashboard());
 
       default:
         return _errorRoute();
