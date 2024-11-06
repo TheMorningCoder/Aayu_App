@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:aayu_app/core/routes/routes.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/shared/components/combined_widget.dart';
@@ -7,12 +6,11 @@ import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:aayu_app/shared/components/primary_textfield.dart';
 import 'package:aayu_app/shared/providers/signup_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import 'dart:developer' as developer;
+import 'package:aayu_app/utils/validators.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -26,44 +24,68 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController captchaController = TextEditingController();
   String captchaString = '';
-  bool isVerified = false;
-  bool captchaError = false;
+  bool errorIsPresent = false;
+  String errorMessage = '';
   @override
   void initState() {
     super.initState();
-    buildCaptcha();
+    captchaString = buildCaptcha();
   }
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    captchaController.dispose();
     super.dispose();
   }
 
-  void buildCaptcha() {
-    const letters =
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    const length = 6;
-    final random = Random();
-    setState(() {
-      captchaString = String.fromCharCodes(
-        List.generate(
-          length,
-          (index) => letters.codeUnitAt(
-            random.nextInt(letters.length),
-          ),
-        ),
-      );
+  void refresh() {
+    developer.log('Inside Refresh()');
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        errorIsPresent = false;
+        emailController.text = '';
+        passwordController.text = '';
+        captchaController.text = '';
+        captchaString = buildCaptcha();
+      });
     });
-    developer.log("the random string is $captchaString");
   }
 
-  void checkCaptcha() {
+  bool checkCaptcha() {
+    return captchaController.text == captchaString;
+  }
+
+  void setErrorMessage(String error) {
     setState(() {
-      isVerified = captchaController.text == captchaString;
-      developer.log("isVerified=$isVerified");
+      errorIsPresent = true;
+      errorMessage = error;
     });
+  }
+
+  bool isDataValid() {
+    bool enteredDataIsCorrect = false;
+    if (checkCaptcha()) {
+      String? emailError = emailValidator(emailController.text);
+      String? passwordError = passwordValidator(passwordController.text);
+      if (emailError != null) {
+        setErrorMessage(emailError);
+        enteredDataIsCorrect = false;
+        refresh();
+      } else if (passwordError != null) {
+        setErrorMessage(passwordError);
+        enteredDataIsCorrect = false;
+        refresh();
+      } else if (emailError == null && passwordError == null) {
+        enteredDataIsCorrect = true;
+      }
+    } else {
+      setErrorMessage('Invalid Captcha');
+      enteredDataIsCorrect = false;
+      refresh();
+    }
+    return enteredDataIsCorrect;
   }
 
   @override
@@ -157,9 +179,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                     ),
                     SizedBox(height: 16.h),
-                    if (captchaError)
+                    if (errorIsPresent)
                       Text(
-                        'Invalid Captcha',
+                        errorMessage,
                         style: TextStyle(
                           color: Colors.red,
                           fontSize: 12.sp,
@@ -170,24 +192,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     PrimaryButton(
                       text: 'Sign Up',
                       onPressed: () {
-                        if (isVerified) {
-                          developer.log("Captcha is correct");
-                          developer.log("Can Proceed Further");
-                        } else {
-                          setState(() {
-                            captchaError = true;
-                          });
-                          developer.log("Captcha is not correct");
-                          developer.log("Can not Proceed Further");
-
-                          Future.delayed(const Duration(seconds: 2), () {
-                            setState(() {
-                              captchaError = false;
-                              captchaController.text = '';
-                            });
-
-                            buildCaptcha(); // Call the function to generate a new captcha
-                          });
+                        if (isDataValid()) {
+                          Navigator.pushNamed(context, Routes.loginScreen);
                         }
                       },
                       width: double.infinity,
@@ -201,7 +207,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Expanded(child: Divider(thickness: 1.w)),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.w),
-                          child: Text('Or Sign Up with'),
+                          child: const Text('Or Sign Up with'),
                         ),
                         Expanded(child: Divider(thickness: 1.w)),
                       ],
