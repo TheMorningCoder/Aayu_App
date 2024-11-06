@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:aayu_app/core/routes/routes.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/shared/components/combined_widget.dart';
@@ -5,9 +7,12 @@ import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:aayu_app/shared/components/primary_textfield.dart';
 import 'package:aayu_app/shared/providers/signup_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'dart:developer' as developer;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -19,12 +24,46 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController captchaController = TextEditingController();
+  String captchaString = '';
+  bool isVerified = false;
+  bool captchaError = false;
+  @override
+  void initState() {
+    super.initState();
+    buildCaptcha();
+  }
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  void buildCaptcha() {
+    const letters =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    const length = 6;
+    final random = Random();
+    setState(() {
+      captchaString = String.fromCharCodes(
+        List.generate(
+          length,
+          (index) => letters.codeUnitAt(
+            random.nextInt(letters.length),
+          ),
+        ),
+      );
+    });
+    developer.log("the random string is $captchaString");
+  }
+
+  void checkCaptcha() {
+    setState(() {
+      isVerified = captchaController.text == captchaString;
+      developer.log("isVerified=$isVerified");
+    });
   }
 
   @override
@@ -37,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           builder: (context, loginProvider, child) {
             return SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(16.w, 60.h, 16.w, 10.h),
+                padding: EdgeInsets.fromLTRB(16.w, 40.h, 16.w, 2.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -79,16 +118,84 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       showEyeIcon: true,
                     ),
                     SizedBox(height: 16.h),
+                    // CAPTCHA section
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            color: AppColors.captchaBoxColor,
+                            child: Text(
+                              captchaString,
+                              style: GoogleFonts.shadowsIntoLight(
+                                fontSize: 24.sp,
+                                letterSpacing: 3.sp,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          flex: 1,
+                          child: TextField(
+                            controller: captchaController,
+                            decoration: InputDecoration(
+                              hintText: 'Enter Captcha',
+                              hintStyle: GoogleFonts.poppins(
+                                color: AppColors.bodyNeutralColor,
+                                height: 1.5,
+                                fontSize: 14.sp,
+                              ),
+                              fillColor: AppColors.textFieldColor,
+                              filled: true,
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16.h),
+                    if (captchaError)
+                      Text(
+                        'Invalid Captcha',
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 12.sp,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     SizedBox(height: 16.h),
                     PrimaryButton(
                       text: 'Sign Up',
-                      onPressed: () {},
+                      onPressed: () {
+                        if (isVerified) {
+                          developer.log("Captcha is correct");
+                          developer.log("Can Proceed Further");
+                        } else {
+                          setState(() {
+                            captchaError = true;
+                          });
+                          developer.log("Captcha is not correct");
+                          developer.log("Can not Proceed Further");
+
+                          Future.delayed(const Duration(seconds: 2), () {
+                            setState(() {
+                              captchaError = false;
+                              captchaController.text = '';
+                            });
+
+                            buildCaptcha(); // Call the function to generate a new captcha
+                          });
+                        }
+                      },
                       width: double.infinity,
                       height: 50.h,
                       buttonColor: AppColors.primaryBrownColor,
                       buttonTextColor: AppColors.primaryWhiteColor,
                     ),
-                    SizedBox(height: 32.h),
+                    SizedBox(height: 20.h),
                     Row(
                       children: [
                         Expanded(child: Divider(thickness: 1.w)),
@@ -126,7 +233,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 28.h),
+                    SizedBox(height: 20.h),
                     CombinedWidget(
                       simpleText: "Already have an account?",
                       hyperLinkText: 'Login',
@@ -137,7 +244,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     CombinedWidget(
                       simpleText: "Sign up to agree to",
                       hyperLinkText: 'Terms & Conditions',
-                      onHyperLinkClick: () {},
+                      onHyperLinkClick: () {
+                        Navigator.pushNamed(context, Routes.loginScreen);
+                      },
                     ),
                   ],
                 ),

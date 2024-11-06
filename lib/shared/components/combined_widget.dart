@@ -16,6 +16,7 @@ class CombinedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
@@ -27,6 +28,7 @@ class CombinedWidget extends StatelessWidget {
         ),
         TextButton(
           onPressed: onHyperLinkClick,
+          style: TextButton.styleFrom(padding: EdgeInsets.zero),
           child: Text(
             hyperLinkText,
             style: TextStyle(
