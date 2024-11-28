@@ -10,4 +10,7 @@ class AppColors {
   static const Color titleHeadingColor = Color(0xFF333333);
   static const Color textFieldColor = Color(0xFFF7F7F7);
   static const Color captchaBoxColor = Color(0xFFEAD692);
+  static const Color goldenOutlineButtonColor = Color(0xFFA86E00);
+  static const Color lightBrownColor = Color(0xFFF3EEEB);
+  static const Color lightBlackColor = Color(0xFFE6E6E6);
 }

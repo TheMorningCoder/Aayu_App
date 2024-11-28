@@ -1,4 +1,4 @@
-import 'package:aayu_app/modules/user/screens/user_dashboard.dart';
+import 'package:aayu_app/modules/user/screens/user_homescreen.dart';
 import 'package:aayu_app/shared/screens/first_splash_screen.dart';
 import 'package:aayu_app/shared/screens/forget_password_screen.dart';
 import 'package:aayu_app/shared/screens/login_screen.dart';
@@ -16,7 +16,7 @@ class Routes {
   static const String resetPasswordScreen = '/reset-password-screen';
   static const String signUpScreen = '/signup-screen';
   static const String adminDashboard = '/admin-dashboard';
-  static const String userDashboard = '/user-dashboard';
+  static const String userHomeScreen = '/user-homescreen';
 }
 
 // Configure the route map
@@ -41,8 +41,8 @@ class RouteGenerator {
       case Routes.signUpScreen:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
-      case Routes.userDashboard:
-        return MaterialPageRoute(builder: (_) => const UserDashboard());
+      case Routes.userHomeScreen:
+        return MaterialPageRoute(builder: (_) => const UserHomeScreen());
 
       default:
         return _errorRoute();

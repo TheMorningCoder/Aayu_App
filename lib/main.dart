@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             initialRoute:
-                Routes.firstSplash, // Start with the first splash screen
+                Routes.userHomeScreen, // Start with the first splash screen
             onGenerateRoute:
                 RouteGenerator.generateRoute, // Use the route generator
           );

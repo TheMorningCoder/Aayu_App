@@ -192,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: 'Sign Up',
                       onPressed: () {
                         if (isDataValid()) {
-                          Navigator.pushNamed(context, Routes.userDashboard);
+                          Navigator.pushNamed(context, Routes.userHomeScreen);
                         }
                       },
                       width: double.infinity,

@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                               if (loginProvider.isLoggedIn == true) {
                                 Navigator.popAndPushNamed(
-                                    context, Routes.signUpScreen);
+                                    context, Routes.userHomeScreen);
                               }
                             },
                       width: double.infinity,
