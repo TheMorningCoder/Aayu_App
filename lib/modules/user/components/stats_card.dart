@@ -1,4 +1,5 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
+import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
 import 'package:aayu_app/modules/user/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,19 +23,7 @@ class StatsCard extends StatelessWidget {
                   color: AppColors.titleHeadingColor,
                 ),
               ),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  "see more",
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.normal,
-                    color: AppColors.blueLinkColor,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColors.blueLinkColor,
-                  ),
-                ),
-              )
+              const HyperlinkText(text: "see more"),
             ],
           ),
           SizedBox(height: 10.h),

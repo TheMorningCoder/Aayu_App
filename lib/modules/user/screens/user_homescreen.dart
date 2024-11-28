@@ -77,7 +77,8 @@ class HomeScreenContent extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
-        decoration: const BoxDecoration(color: AppColors.lightBrownColor),
+        decoration:
+            const BoxDecoration(color: AppColors.lighterBrownBackgroundColor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -101,7 +102,7 @@ class HomeScreenContent extends StatelessWidget {
 
             SizedBox(height: 14.h),
             // Community Milestone Section
-            CommunityMilestoneCard(),
+            const CommunityMilestoneCard(name: "Anurag", streak: "20"),
             SizedBox(height: 14.h),
           ],
         ),

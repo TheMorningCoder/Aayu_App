@@ -13,4 +13,7 @@ class AppColors {
   static const Color goldenOutlineButtonColor = Color(0xFFA86E00);
   static const Color lightBrownColor = Color(0xFFF3EEEB);
   static const Color lightBlackColor = Color(0xFFE6E6E6);
+  static const Color lighterBrownBackgroundColor = Color(0xFFF8F5F3);
+  static const Color secondaryYellowColor = Color(0xFFFEF0D9);
+  static const Color fireColor = Color(0xFFFF4500);
 }
