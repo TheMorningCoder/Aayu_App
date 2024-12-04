@@ -3,9 +3,9 @@ import 'package:aayu_app/modules/user/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Streak Card Widget
-class StreakCard extends StatelessWidget {
-  const StreakCard({
+// Current User Streak Card Widget
+class CurrentUserStreakCard extends StatelessWidget {
+  const CurrentUserStreakCard({
     super.key,
     required this.streakNumber,
   });

@@ -1,10 +1,12 @@
+import 'package:aayu_app/modules/user/components/community_milestone_streak_card.dart';
+import 'package:aayu_app/modules/user/data/streak_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/alert_bar.dart';
 import 'package:aayu_app/modules/user/components/community_milestone_card.dart';
 import 'package:aayu_app/modules/user/components/stats_card.dart';
-import 'package:aayu_app/modules/user/components/streak_card.dart';
+import 'package:aayu_app/modules/user/components/current_user_streak_card.dart';
 import 'package:aayu_app/modules/user/components/top_name_bar.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -19,13 +21,16 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
 
   final List<Widget> _screens = [
     // Home Screen Content
-    HomeScreenContent(),
+    const HomeScreenContent(),
     // Schedule Screen
-    Center(child: Text('Schedule Screen', style: TextStyle(fontSize: 20))),
+    const Center(
+        child: Text('Schedule Screen', style: TextStyle(fontSize: 20))),
     // Purchase Screen
-    Center(child: Text('Purchase Screen', style: TextStyle(fontSize: 20))),
+    const Center(
+        child: Text('Purchase Screen', style: TextStyle(fontSize: 20))),
     // More Options Screen
-    Center(child: Text('More Options Screen', style: TextStyle(fontSize: 20))),
+    const Center(
+        child: Text('More Options Screen', style: TextStyle(fontSize: 20))),
   ];
 
   void _onTabTapped(int index) {
@@ -72,6 +77,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
 
 //Home Screen Content
 class HomeScreenContent extends StatelessWidget {
+  const HomeScreenContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -93,7 +100,7 @@ class HomeScreenContent extends StatelessWidget {
 
             SizedBox(height: 14.h),
             // Streak Section
-            const StreakCard(
+            const CurrentUserStreakCard(
               streakNumber: "25",
             ),
             SizedBox(height: 14.h),
@@ -102,8 +109,29 @@ class HomeScreenContent extends StatelessWidget {
 
             SizedBox(height: 14.h),
             // Community Milestone Section
-            const CommunityMilestoneCard(name: "Anurag", streak: "20"),
+            const CommunityMilestoneCard(name: "Joe Smith", streak: "20"),
             SizedBox(height: 14.h),
+            SizedBox(
+              height: 200, // Set a fixed height
+              child: ListView.builder(
+                itemCount: streakData.length,
+                itemBuilder: (context, index) {
+                  final streak = streakData[index];
+                  return Column(
+                    children: [
+                      CommunityStreakCard(
+                        streakDays: streak['streakDays']
+                            as int, // Explicitly cast to int
+                        users: streak['users'] as List<
+                            Map<String,
+                                String>>, // Explicitly cast to List<Map<String, String>>
+                      ),
+                      SizedBox(height: 14.sp),
+                    ],
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
