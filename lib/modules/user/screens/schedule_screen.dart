@@ -1,5 +1,11 @@
+import 'package:aayu_app/core/themes/app_colors.dart';
+import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
+import 'package:aayu_app/modules/user/components/schedule_class_card.dart';
+import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:aayu_app/modules/user/components/top_name_bar.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -15,95 +21,100 @@ class ScheduleScreenState extends State<ScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Schedule'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            // Calendar Widget
-            TableCalendar(
-              firstDay: DateTime.utc(2020, 1, 1),
-              lastDay: DateTime.utc(2030, 12, 31),
-              focusedDay: _focusedDay,
-              selectedDayPredicate: (day) {
-                return isSameDay(_selectedDay, day);
-              },
-              onDaySelected: (selectedDay, focusedDay) {
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay; // Update focusedDay as well
-                });
-              },
-              calendarFormat: CalendarFormat.month,
-              startingDayOfWeek: StartingDayOfWeek.sunday,
-              calendarStyle: const CalendarStyle(
-                selectedDecoration: BoxDecoration(
-                  color: Colors.orange,
-                  shape: BoxShape.circle,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 8.w),
+          decoration:
+              const BoxDecoration(color: AppColors.lighterBrownBackgroundColor),
+          child: Column(
+            children: [
+              // Top Bar Section
+              SizedBox(height: 14.h),
+              const TopNameBar(name: "Karthik"),
+              // Calendar Widget
+              TableCalendar(
+                firstDay: DateTime.utc(2020, 1, 1),
+                lastDay: DateTime.utc(2030, 12, 31),
+                focusedDay: _focusedDay,
+                selectedDayPredicate: (day) {
+                  return isSameDay(_selectedDay, day);
+                },
+                onDaySelected: (selectedDay, focusedDay) {
+                  setState(() {
+                    _selectedDay = selectedDay;
+                    _focusedDay = focusedDay; // Update focusedDay as well
+                  });
+                },
+                calendarFormat: CalendarFormat.month,
+                startingDayOfWeek: StartingDayOfWeek.sunday,
+                calendarStyle: const CalendarStyle(
+                  selectedDecoration: BoxDecoration(
+                    color: Colors.orange,
+                    shape: BoxShape.circle,
+                  ),
+                  todayDecoration: BoxDecoration(
+                    color: Colors.blue,
+                    shape: BoxShape.circle,
+                  ),
+                  markerDecoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    shape: BoxShape.circle,
+                  ),
                 ),
-                todayDecoration: BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
-                ),
-                markerDecoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  shape: BoxShape.circle,
+                headerStyle: const HeaderStyle(
+                  formatButtonVisible: false,
+                  titleCentered: true,
+                  titleTextStyle:
+                      TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
               ),
-              headerStyle: const HeaderStyle(
-                formatButtonVisible: false,
-                titleCentered: true,
-                titleTextStyle:
-                    TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              const SizedBox(height: 20),
+              // Schedule Button
+              PrimaryButton(
+                text: 'Schedule Class',
+                onPressed: () {},
+                width: double.infinity,
+                height: 50.h,
+                buttonColor: AppColors.primaryBrownColor,
+                buttonTextColor: AppColors.primaryWhiteColor,
               ),
-            ),
-            const SizedBox(height: 20),
-            // Schedule Button
-            ElevatedButton(
-              onPressed: () {
-                // Add functionality to schedule a class
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Schedule Class for $_selectedDay')),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.brown,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 12.0),
-              ),
-              child: const Text(
-                'Schedule Class',
-                style: TextStyle(fontSize: 16.0),
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Upcoming Classes Section
-            Expanded(
-              child: ListView(
+              const SizedBox(height: 20),
+              // Upcoming Classes Section
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Upcoming Classes',
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                  Text(
+                    "Upcoming Classes",
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.titleHeadingColor,
+                    ),
                   ),
-                  const SizedBox(height: 10),
-                  // Dummy list items
-                  ListTile(
-                    title: Text(
-                        'Class on ${DateTime.now().add(const Duration(days: 1)).toLocal()}'),
-                    subtitle: const Text('Details of the class'),
-                  ),
-                  ListTile(
-                    title: Text(
-                        'Class on ${DateTime.now().add(const Duration(days: 3)).toLocal()}'),
-                    subtitle: const Text('Details of the class'),
-                  ),
+                  const HyperlinkText(text: "see more"),
                 ],
               ),
-            ),
-          ],
+              SizedBox(
+                height: 200,
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 10),
+                    // Dummy list items
+                    ScheduleClassCard(
+                      classDate: '16th September 2024',
+                      instructorName: 'Ayush Sharma',
+                      classTime: '08:00 PM',
+                    ),
+                    ScheduleClassCard(
+                      classDate: '16th September 2024',
+                      instructorName: 'Ayush Sharma',
+                      classTime: '08:00 PM',
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

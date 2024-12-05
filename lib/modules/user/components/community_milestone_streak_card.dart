@@ -14,10 +14,10 @@ class CommunityStreakCard extends StatefulWidget {
   });
 
   @override
-  _CommunityStreakCardState createState() => _CommunityStreakCardState();
+  CommunityStreakCardState createState() => CommunityStreakCardState();
 }
 
-class _CommunityStreakCardState extends State<CommunityStreakCard> {
+class CommunityStreakCardState extends State<CommunityStreakCard> {
   bool _isExpanded = false;
 
   @override
