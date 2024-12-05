@@ -50,25 +50,45 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                 startingDayOfWeek: StartingDayOfWeek.sunday,
                 calendarStyle: const CalendarStyle(
                   selectedDecoration: BoxDecoration(
-                    color: Colors.orange,
-                    shape: BoxShape.circle,
+                    color: AppColors.primaryBrownColor,
+                    shape: BoxShape.rectangle,
                   ),
                   todayDecoration: BoxDecoration(
-                    color: Colors.blue,
-                    shape: BoxShape.circle,
+                    color: AppColors.secondaryLighterYellowColor,
+                    shape: BoxShape.rectangle,
                   ),
                   markerDecoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    shape: BoxShape.circle,
+                    color: AppColors.secondaryLighterYellowColor,
+                    shape: BoxShape.rectangle,
+                  ),
+                  // Customize text styles
+                  todayTextStyle: TextStyle(
+                    color:
+                        Colors.black, // Change to your desired color for today
+                    fontWeight: FontWeight.bold,
+                  ),
+                  selectedTextStyle: TextStyle(
+                    color: Colors
+                        .white, // Change to your desired color for selected days
+                  ),
+                  defaultTextStyle: TextStyle(
+                    color: Colors
+                        .black, // Change to your desired default text color
+                  ),
+                  weekendTextStyle: TextStyle(
+                    color: Colors.red, // Change to your desired weekend color
                   ),
                 ),
                 headerStyle: const HeaderStyle(
                   formatButtonVisible: false,
                   titleCentered: true,
-                  titleTextStyle:
-                      TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  titleTextStyle: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
+
               const SizedBox(height: 20),
               // Schedule Button
               PrimaryButton(
