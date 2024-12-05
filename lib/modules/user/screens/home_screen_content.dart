@@ -1,4 +1,5 @@
 import 'package:aayu_app/modules/user/components/community_milestone_streak_card.dart';
+import 'package:aayu_app/modules/user/components/refer_and_earn_card.dart';
 import 'package:aayu_app/modules/user/data/streak_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,27 +46,25 @@ class HomeScreenContent extends StatelessWidget {
             // Community Milestone Section
             const CommunityMilestoneCard(name: "Joe Smith", streak: "20"),
             SizedBox(height: 14.h),
-            SizedBox(
-              height: 200, // Set a fixed height
-              child: ListView.builder(
-                itemCount: streakData.length,
-                itemBuilder: (context, index) {
-                  final streak = streakData[index];
-                  return Column(
-                    children: [
-                      CommunityStreakCard(
-                        streakDays: streak['streakDays']
-                            as int, // Explicitly cast to int
-                        users: streak['users'] as List<
-                            Map<String,
-                                String>>, // Explicitly cast to List<Map<String, String>>
+            // Dynamically adjusted ListView
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return Column(
+                  children: streakData.map((streak) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 14.h),
+                      child: CommunityStreakCard(
+                        streakDays: streak['streakDays'] as int,
+                        users: streak['users'] as List<Map<String, String>>,
                       ),
-                      SizedBox(height: 14.sp),
-                    ],
-                  );
-                },
-              ),
+                    );
+                  }).toList(),
+                );
+              },
             ),
+
+            const ReferAndEarnCard(),
+            SizedBox(height: 16.h),
           ],
         ),
       ),

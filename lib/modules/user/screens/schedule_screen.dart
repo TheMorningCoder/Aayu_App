@@ -1,6 +1,7 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
 import 'package:aayu_app/modules/user/components/schedule_class_card.dart';
+import 'package:aayu_app/modules/user/data/scheduled_class_data.dart';
 import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -96,21 +97,16 @@ class ScheduleScreenState extends State<ScheduleScreen> {
               ),
               SizedBox(
                 height: 200,
-                child: ListView(
-                  children: [
-                    const SizedBox(height: 10),
-                    // Dummy list items
-                    ScheduleClassCard(
-                      classDate: '16th September 2024',
-                      instructorName: 'Ayush Sharma',
-                      classTime: '08:00 PM',
-                    ),
-                    ScheduleClassCard(
-                      classDate: '16th September 2024',
-                      instructorName: 'Ayush Sharma',
-                      classTime: '08:00 PM',
-                    )
-                  ],
+                child: ListView.builder(
+                  itemCount: scheduleData.length,
+                  itemBuilder: (context, index) {
+                    final schedule = scheduleData[index];
+                    return ScheduleClassCard(
+                      classDate: schedule['classDate']!,
+                      instructorName: schedule['instructorName']!,
+                      classTime: schedule['classTime']!,
+                    );
+                  },
                 ),
               ),
             ],
