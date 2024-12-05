@@ -8,14 +8,14 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aayu_app/modules/user/components/top_name_bar.dart';
 
-class ScheduleScreen extends StatefulWidget {
-  const ScheduleScreen({super.key});
+class ScheduleScreenContent extends StatefulWidget {
+  const ScheduleScreenContent({super.key});
 
   @override
-  ScheduleScreenState createState() => ScheduleScreenState();
+  ScheduleScreenContentState createState() => ScheduleScreenContentState();
 }
 
-class ScheduleScreenState extends State<ScheduleScreen> {
+class ScheduleScreenContentState extends State<ScheduleScreenContent> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
@@ -95,19 +95,22 @@ class ScheduleScreenState extends State<ScheduleScreen> {
                   const HyperlinkText(text: "see more"),
                 ],
               ),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  itemCount: scheduleData.length,
-                  itemBuilder: (context, index) {
-                    final schedule = scheduleData[index];
-                    return ScheduleClassCard(
-                      classDate: schedule['classDate']!,
-                      instructorName: schedule['instructorName']!,
-                      classTime: schedule['classTime']!,
-                    );
-                  },
-                ),
+
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  return Column(
+                    children: scheduleData.map((schedule) {
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 14.h),
+                        child: ScheduleClassCard(
+                          classDate: schedule['classDate']!,
+                          instructorName: schedule['instructorName']!,
+                          classTime: schedule['classTime']!,
+                        ),
+                      );
+                    }).toList(),
+                  );
+                },
               ),
             ],
           ),

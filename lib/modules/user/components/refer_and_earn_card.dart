@@ -33,22 +33,6 @@ class ReferAndEarnCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // ElevatedButton(
-              //   onPressed: () {
-              //     // Add your button action here
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     backgroundColor: AppColors.primaryBrownColor,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(4.r),
-              //     ),
-              //   ),
-              //   child: Text(
-              //     'Refer Now',
-              //     style: TextStyle(
-              //         fontSize: 14.sp, color: AppColors.primaryWhiteColor),
-              //   ),
-              // ),
               PrimaryButton(
                   text: "Refer Now",
                   onPressed: () {},
