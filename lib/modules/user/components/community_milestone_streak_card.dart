@@ -60,10 +60,7 @@ class CommunityStreakCardState extends State<CommunityStreakCard> {
               child: Column(
                 children: widget.users
                     .map(
-                      (user) => UserBasicInfoCard(
-                        userName: user['name']!,
-                        userImage: user['image']!,
-                      ),
+                      (user) => UserBasicInfoCard(userName: user['name']!),
                     )
                     .toList(),
               ),
@@ -76,11 +73,9 @@ class CommunityStreakCardState extends State<CommunityStreakCard> {
 
 class UserBasicInfoCard extends StatelessWidget {
   final String userName;
-  final String userImage;
 
   const UserBasicInfoCard({
     required this.userName,
-    required this.userImage,
     super.key,
   });
 
@@ -91,9 +86,10 @@ class UserBasicInfoCard extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(userImage),
-              radius: 18.sp,
+            Image.asset(
+              'assets/contacts.png',
+              width: 40.w,
+              height: 40.h,
             ),
             SizedBox(width: 10.w),
             Text(
