@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             initialRoute:
-                Routes.userHomeScreen, // Start with the first splash screen
+                Routes.firstSplash, // Start with the first splash screen
             onGenerateRoute:
                 RouteGenerator.generateRoute, // Use the route generator
           );
@@ -42,4 +42,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//6LeLIXQqAAAAAFMZwLNhPFKE53kQ6ju0q_o6HSoK
