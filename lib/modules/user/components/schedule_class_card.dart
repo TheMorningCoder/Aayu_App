@@ -1,5 +1,6 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/reusable_card.dart';
+import 'package:aayu_app/modules/user/screens/popups/upcoming_class_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -55,7 +56,17 @@ class ScheduleClassCard extends StatelessWidget {
                 ),
                 SizedBox(width: 10.w),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return UpcomingClassPopup(
+                          classDate: classDate,
+                          classTime: classTime,
+                        );
+                      },
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lightBlueBackground,
                   ),

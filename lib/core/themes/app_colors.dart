@@ -18,4 +18,6 @@ class AppColors {
   static const Color secondaryLighterYellowColor = Color(0xFFFCDEAD);
   static const Color fireColor = Color(0xFFFF4500);
   static const Color lightBlueBackground = Color(0xFFEBF4FF);
+  static const Color redCancelButtonFontColor = Color(0xFFFF4A4A);
+  static const Color redCancelButtonBackgroundColor = Color(0xFFFFF0F0);
 }
