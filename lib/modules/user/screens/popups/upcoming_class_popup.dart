@@ -19,6 +19,8 @@ class UpcomingClassPopup extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
       child: Container(
+        height: 300.h,
+        width: 300.w,
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -28,6 +30,7 @@ class UpcomingClassPopup extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 10.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -58,7 +61,7 @@ class UpcomingClassPopup extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 15.h),
+            SizedBox(height: 20.h),
             Text(
               "Scheduled Class",
               style: TextStyle(
@@ -66,7 +69,7 @@ class UpcomingClassPopup extends StatelessWidget {
                 fontSize: 14.sp,
               ),
             ),
-            SizedBox(height: 15.h),
+            SizedBox(height: 30.h),
             Text(
               "$classDate, $classTime",
               style: TextStyle(
@@ -75,7 +78,7 @@ class UpcomingClassPopup extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 25.h),
+            SizedBox(height: 20.h),
             CancelButton(
               buttonText: "Cancel Class",
               onPressed: () {

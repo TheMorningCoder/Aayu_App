@@ -20,4 +20,5 @@ class AppColors {
   static const Color lightBlueBackground = Color(0xFFEBF4FF);
   static const Color redCancelButtonFontColor = Color(0xFFFF4A4A);
   static const Color redCancelButtonBackgroundColor = Color(0xFFFFF0F0);
+  static const Color paleBrownBackgroundColor = Color(0xFFF3EEEB);
 }

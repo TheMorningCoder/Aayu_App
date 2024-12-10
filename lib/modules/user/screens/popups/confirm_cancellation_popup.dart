@@ -1,5 +1,6 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/cancel_button.dart';
+import 'package:aayu_app/modules/user/screens/popups/informational_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,6 +12,8 @@ class ConfirmCancellationPopup extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
       child: Container(
+        height: 300.h,
+        width: 300.w,
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -66,7 +69,21 @@ class ConfirmCancellationPopup extends StatelessWidget {
             SizedBox(height: 20.h),
             CancelButton(
               buttonText: "Cancel Class",
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => InformationalPopup(
+                    icon: Icons.cancel,
+                    iconColor: AppColors.redCancelButtonFontColor,
+                    heading: "Cancelled!",
+                    description: "Your scheduled class is cancelled",
+                    buttonText: "Go Back",
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
