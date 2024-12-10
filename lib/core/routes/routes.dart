@@ -1,6 +1,10 @@
+import 'package:aayu_app/modules/user/screens/user_homescreen.dart';
 import 'package:aayu_app/shared/screens/first_splash_screen.dart';
+import 'package:aayu_app/shared/screens/forget_password_screen.dart';
 import 'package:aayu_app/shared/screens/login_screen.dart';
+import 'package:aayu_app/shared/screens/reset_password_screen.dart';
 import 'package:aayu_app/shared/screens/second_splash_screen.dart';
+import 'package:aayu_app/shared/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 // Define the route names as constants
@@ -8,8 +12,11 @@ class Routes {
   static const String firstSplash = '/first-splash';
   static const String secondSplash = '/second-splash';
   static const String loginScreen = '/login-screen';
+  static const String forgetPasswordScreen = '/forget-password-screen';
+  static const String resetPasswordScreen = '/reset-password-screen';
+  static const String signUpScreen = '/signup-screen';
   static const String adminDashboard = '/admin-dashboard';
-  static const String userDashboard = '/user-dashboard';
+  static const String userHomeScreen = '/user-homescreen';
 }
 
 // Configure the route map
@@ -23,13 +30,19 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SecondSplashScreen());
 
       case Routes.loginScreen:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
 
-      // case Routes.adminDashboard:
-      //   return MaterialPageRoute(builder: (_) => AdminDashboardScreen());
+      case Routes.forgetPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
 
-      // case Routes.userDashboard:
-      //   return MaterialPageRoute(builder: (_) => UserDashboardScreen());
+      case Routes.resetPasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
+
+      case Routes.signUpScreen:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
+
+      case Routes.userHomeScreen:
+        return MaterialPageRoute(builder: (_) => const UserHomeScreen());
 
       default:
         return _errorRoute();
