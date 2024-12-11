@@ -2,6 +2,7 @@ import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
 import 'package:aayu_app/modules/user/components/schedule_class_card.dart';
 import 'package:aayu_app/modules/user/data/scheduled_class_data.dart';
+import 'package:aayu_app/modules/user/screens/popups/informational_popup.dart';
 import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -18,6 +19,40 @@ class ScheduleScreenContent extends StatefulWidget {
 class ScheduleScreenContentState extends State<ScheduleScreenContent> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+  bool showTimeSlots = false;
+  String? _selectedTimeSlot;
+  final List<String> timeSlots = [
+    "10:00 AM",
+    "12:00 PM",
+    "01:00 PM",
+    "02:00 PM",
+    "04:00 PM",
+    "05:00 PM",
+    "07:00 PM"
+  ];
+
+  void scheduleClass() {
+    if (_selectedTimeSlot != null) {
+      showDialog(
+        context: context,
+        builder: (context) => InformationalPopup(
+          icon: Icons.check_circle,
+          iconColor: AppColors.popupGreenColor,
+          heading: "Congratulations!",
+          description:
+              "Your class is scheduled now hit the gym and stay stronger",
+          buttonText: "Let's Go",
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please select a time slot.")),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +72,14 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                 firstDay: DateTime.utc(2020, 1, 1),
                 lastDay: DateTime.utc(2030, 12, 31),
                 focusedDay: _focusedDay,
-                selectedDayPredicate: (day) {
-                  return isSameDay(_selectedDay, day);
-                },
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                 onDaySelected: (selectedDay, focusedDay) {
                   setState(() {
                     _selectedDay = selectedDay;
-                    _focusedDay = focusedDay; // Update focusedDay as well
+                    _focusedDay = focusedDay;
+                    showTimeSlots =
+                        true; // Show time slots when a date is selected
+                    _selectedTimeSlot = null; // Reset time slot selection
                   });
                 },
                 calendarFormat: CalendarFormat.month,
@@ -57,27 +93,6 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                     color: AppColors.secondaryLighterYellowColor,
                     shape: BoxShape.rectangle,
                   ),
-                  markerDecoration: BoxDecoration(
-                    color: AppColors.secondaryLighterYellowColor,
-                    shape: BoxShape.rectangle,
-                  ),
-                  // Customize text styles
-                  todayTextStyle: TextStyle(
-                    color:
-                        Colors.black, // Change to your desired color for today
-                    fontWeight: FontWeight.bold,
-                  ),
-                  selectedTextStyle: TextStyle(
-                    color: Colors
-                        .white, // Change to your desired color for selected days
-                  ),
-                  defaultTextStyle: TextStyle(
-                    color: Colors
-                        .black, // Change to your desired default text color
-                  ),
-                  weekendTextStyle: TextStyle(
-                    color: Colors.red, // Change to your desired weekend color
-                  ),
                 ),
                 headerStyle: const HeaderStyle(
                   formatButtonVisible: false,
@@ -88,17 +103,54 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                   ),
                 ),
               ),
+              if (showTimeSlots) ...[
+                SizedBox(height: 20.h),
+                Wrap(
+                  spacing: 10.w,
+                  runSpacing: 10.h,
+                  children: timeSlots.map((timeSlot) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedTimeSlot = timeSlot;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 10.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _selectedTimeSlot == timeSlot
+                              ? AppColors.primaryBrownColor
+                              : AppColors.secondaryLighterYellowColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          timeSlot,
+                          style: TextStyle(
+                            color: _selectedTimeSlot == timeSlot
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
 
-              const SizedBox(height: 20),
-              // Schedule Button
-              PrimaryButton(
-                text: 'Schedule Class',
-                onPressed: () {},
-                width: double.infinity,
-                height: 50.h,
-                buttonColor: AppColors.primaryBrownColor,
-                buttonTextColor: AppColors.primaryWhiteColor,
-              ),
+                const SizedBox(height: 20),
+                // Schedule Button
+                SizedBox(height: 20.h),
+                PrimaryButton(
+                  text: 'Schedule Class',
+                  onPressed: scheduleClass,
+                  width: double.infinity,
+                  height: 50.h,
+                  buttonColor: AppColors.primaryBrownColor,
+                  buttonTextColor: AppColors.primaryWhiteColor,
+                ),
+              ],
               const SizedBox(height: 20),
               // Upcoming Classes Section
               Row(
