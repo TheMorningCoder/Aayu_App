@@ -102,6 +102,51 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                calendarBuilders: CalendarBuilders(
+                  defaultBuilder: (context, day, focusedDay) {
+                    if (day.isBefore(DateTime.now())) {
+                      // Make previous days inactive and change font color
+                      return Center(
+                        child: Text(
+                          day.day.toString(),
+                          style: const TextStyle(
+                              color: AppColors.bodyNeutralColor),
+                        ),
+                      );
+                    }
+                    // For active days, use the default style
+                    return null;
+                  },
+                  todayBuilder: (context, day, focusedDay) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        color: AppColors.secondaryLighterYellowColor,
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          day.day.toString(),
+                          style: const TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    );
+                  },
+                  selectedBuilder: (context, day, focusedDay) {
+                    return Container(
+                      decoration: const BoxDecoration(
+                        color: AppColors.primaryBrownColor,
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          day.day.toString(),
+                          style: const TextStyle(
+                              color: AppColors.primaryWhiteColor),
+                        ),
+                      ),
+                    );
+                  },
+                ),
               ),
               if (showTimeSlots) ...[
                 SizedBox(height: 20.h),
@@ -122,16 +167,14 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                         ),
                         decoration: BoxDecoration(
                           color: _selectedTimeSlot == timeSlot
-                              ? AppColors.primaryBrownColor
-                              : AppColors.secondaryLighterYellowColor,
+                              ? AppColors.secondaryLighterYellowColor
+                              : AppColors.primaryWhiteColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
                           timeSlot,
-                          style: TextStyle(
-                            color: _selectedTimeSlot == timeSlot
-                                ? Colors.white
-                                : Colors.black,
+                          style: const TextStyle(
+                            color: AppColors.titleHeadingColor,
                           ),
                         ),
                       ),
@@ -152,7 +195,6 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                 ),
               ],
               const SizedBox(height: 20),
-              // Upcoming Classes Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
