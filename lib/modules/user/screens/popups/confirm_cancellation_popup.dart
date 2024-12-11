@@ -70,6 +70,7 @@ class ConfirmCancellationPopup extends StatelessWidget {
             CancelButton(
               buttonText: "Cancel Class",
               onPressed: () {
+                Navigator.of(context).pop();
                 showDialog(
                   context: context,
                   builder: (context) => InformationalPopup(
@@ -79,7 +80,7 @@ class ConfirmCancellationPopup extends StatelessWidget {
                     description: "Your scheduled class is cancelled",
                     buttonText: "Go Back",
                     onPressed: () {
-                      Navigator.of(context).pop(); // Close the dialog
+                      Navigator.of(context).pop();
                     },
                   ),
                 );

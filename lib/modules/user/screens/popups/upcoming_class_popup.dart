@@ -82,10 +82,10 @@ class UpcomingClassPopup extends StatelessWidget {
             CancelButton(
               buttonText: "Cancel Class",
               onPressed: () {
+                Navigator.of(context).pop();
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    //Navigator.pop(context);
                     return const ConfirmCancellationPopup();
                   },
                 );
