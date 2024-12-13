@@ -22,4 +22,5 @@ class AppColors {
   static const Color redCancelButtonBackgroundColor = Color(0xFFFFF0F0);
   static const Color paleBrownBackgroundColor = Color(0xFFF3EEEB);
   static const Color popupGreenColor = Color(0xFF2C8F52);
+  static const Color calendarBackgroundColor = Color(0xFFFFFDFA);
 }

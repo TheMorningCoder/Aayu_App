@@ -1,4 +1,5 @@
 import 'package:aayu_app/modules/user/screens/home_screen_content.dart';
+import 'package:aayu_app/modules/user/screens/purchase_screen_content.dart';
 import 'package:aayu_app/modules/user/screens/schedule_screen_content.dart';
 import 'package:flutter/material.dart';
 import 'package:aayu_app/core/themes/app_colors.dart';
@@ -19,8 +20,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     // Schedule Screen
     const ScheduleScreenContent(),
     // Purchase Screen
-    const Center(
-        child: Text('Purchase Screen', style: TextStyle(fontSize: 20))),
+    const PurchaseScreenContent(),
     // More Options Screen
     const Center(
         child: Text('More Options Screen', style: TextStyle(fontSize: 20))),

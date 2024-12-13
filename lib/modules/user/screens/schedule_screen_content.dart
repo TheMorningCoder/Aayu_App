@@ -1,4 +1,5 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
+import 'package:aayu_app/modules/user/components/alert_bar.dart';
 import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
 import 'package:aayu_app/modules/user/components/schedule_class_card.dart';
 import 'package:aayu_app/modules/user/data/scheduled_class_data.dart';
@@ -63,91 +64,36 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
           decoration:
               const BoxDecoration(color: AppColors.lighterBrownBackgroundColor),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Top Bar Section
               SizedBox(height: 14.h),
               const TopNameBar(name: "Karthik"),
-              // Calendar Widget
-              TableCalendar(
-                firstDay: DateTime.utc(2020, 1, 1),
-                lastDay: DateTime.utc(2030, 12, 31),
-                focusedDay: _focusedDay,
-                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                onDaySelected: (selectedDay, focusedDay) {
-                  setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
-                    showTimeSlots =
-                        true; // Show time slots when a date is selected
-                    _selectedTimeSlot = null; // Reset time slot selection
-                  });
-                },
-                calendarFormat: CalendarFormat.month,
-                startingDayOfWeek: StartingDayOfWeek.sunday,
-                calendarStyle: const CalendarStyle(
-                  selectedDecoration: BoxDecoration(
-                    color: AppColors.primaryBrownColor,
-                    shape: BoxShape.rectangle,
-                  ),
-                  todayDecoration: BoxDecoration(
-                    color: AppColors.secondaryLighterYellowColor,
-                    shape: BoxShape.rectangle,
-                  ),
-                ),
-                headerStyle: const HeaderStyle(
-                  formatButtonVisible: false,
-                  titleCentered: true,
-                  titleTextStyle: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                calendarBuilders: CalendarBuilders(
-                  defaultBuilder: (context, day, focusedDay) {
-                    if (day.isBefore(DateTime.now())) {
-                      // Make previous days inactive and change font color
-                      return Center(
-                        child: Text(
-                          day.day.toString(),
-                          style: const TextStyle(
-                              color: AppColors.bodyNeutralColor),
-                        ),
-                      );
-                    }
-                    // For active days, use the default style
-                    return null;
-                  },
-                  todayBuilder: (context, day, focusedDay) {
-                    return Container(
-                      decoration: const BoxDecoration(
-                        color: AppColors.secondaryLighterYellowColor,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Center(
-                        child: Text(
-                          day.day.toString(),
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    );
-                  },
-                  selectedBuilder: (context, day, focusedDay) {
-                    return Container(
-                      decoration: const BoxDecoration(
-                        color: AppColors.primaryBrownColor,
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Center(
-                        child: Text(
-                          day.day.toString(),
-                          style: const TextStyle(
-                              color: AppColors.primaryWhiteColor),
-                        ),
-                      ),
-                    );
-                  },
+              SizedBox(height: 14.h),
+              const AlertBar(text: ". The pilates center is closed today"),
+              SizedBox(height: 14.h),
+              Text(
+                "Schedule",
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.titleHeadingColor,
                 ),
               ),
+              Text(
+                "Click on the dates to check your past and upcoming bookings",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.bodyNeutralColor,
+                ),
+              ),
+              SizedBox(height: 14.h),
+
+              // Alert Bar
+
+              // Calendar Widget
+              buildCalendarWidget(),
               if (showTimeSlots) ...[
                 SizedBox(height: 20.h),
                 Wrap(
@@ -228,6 +174,93 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Container buildCalendarWidget() {
+    return Container(
+      color: AppColors.calendarBackgroundColor,
+      padding: EdgeInsets.fromLTRB(4.sp, 6.sp, 4.sp, 6.sp),
+      height: 300.0, // Set your desired height here
+
+      child: TableCalendar(
+        rowHeight: 40,
+        firstDay: DateTime.utc(2020, 1, 1),
+        lastDay: DateTime.utc(2030, 12, 31),
+        focusedDay: _focusedDay,
+        selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+        onDaySelected: (selectedDay, focusedDay) {
+          setState(() {
+            _selectedDay = selectedDay;
+            _focusedDay = focusedDay;
+            showTimeSlots = true; // Show time slots when a date is selected
+            _selectedTimeSlot = null; // Reset time slot selection
+          });
+        },
+        calendarFormat: CalendarFormat.month,
+        startingDayOfWeek: StartingDayOfWeek.sunday,
+        calendarStyle: const CalendarStyle(
+          selectedDecoration: BoxDecoration(
+            color: AppColors.primaryBrownColor,
+            shape: BoxShape.rectangle,
+          ),
+          todayDecoration: BoxDecoration(
+            color: AppColors.secondaryLighterYellowColor,
+            shape: BoxShape.rectangle,
+          ),
+        ),
+        headerStyle: const HeaderStyle(
+          formatButtonVisible: false,
+          titleCentered: true,
+          titleTextStyle: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        calendarBuilders: CalendarBuilders(
+          defaultBuilder: (context, day, focusedDay) {
+            if (day.isBefore(DateTime.now())) {
+              // Make previous days inactive and change font color
+              return Center(
+                child: Text(
+                  day.day.toString(),
+                  style: const TextStyle(color: AppColors.bodyNeutralColor),
+                ),
+              );
+            }
+            // For active days, use the default style
+            return null;
+          },
+          todayBuilder: (context, day, focusedDay) {
+            return Container(
+              decoration: const BoxDecoration(
+                color: AppColors.secondaryLighterYellowColor,
+                shape: BoxShape.rectangle,
+              ),
+              child: Center(
+                child: Text(
+                  day.day.toString(),
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ),
+            );
+          },
+          selectedBuilder: (context, day, focusedDay) {
+            return Container(
+              decoration: const BoxDecoration(
+                color: AppColors.primaryBrownColor,
+                shape: BoxShape.rectangle,
+              ),
+              child: Center(
+                child: Text(
+                  day.day.toString(),
+                  style: const TextStyle(color: AppColors.primaryWhiteColor),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

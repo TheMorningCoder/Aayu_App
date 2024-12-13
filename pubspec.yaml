@@ -42,6 +42,9 @@ flutter:
     - assets/fire.gif
     - assets/contacts.png
     - assets/campaign.png
+    - assets/gold_plan.png
+    - assets/diamond_plan.jpg
+    - assets/platinum_plan.png
 
   
     
