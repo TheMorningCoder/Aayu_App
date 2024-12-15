@@ -1,4 +1,7 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
+import 'package:aayu_app/modules/user/components/gradient_button.dart';
+import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
+import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,6 +12,8 @@ class PurchasePlanCard extends StatefulWidget {
   final int discountPercentage;
   final int classesPerMonth;
   final String imagePath;
+  final bool gradientTagIsVisible;
+  final String gradientTagText;
 
   const PurchasePlanCard({
     super.key,
@@ -18,6 +23,8 @@ class PurchasePlanCard extends StatefulWidget {
     required this.discountPercentage,
     required this.classesPerMonth,
     required this.imagePath,
+    required this.gradientTagText,
+    required this.gradientTagIsVisible,
   });
 
   @override
@@ -38,16 +45,16 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        padding: const EdgeInsets.all(16.0),
-        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        padding: EdgeInsets.all(16.sp),
+        margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
         decoration: BoxDecoration(
-          color: AppColors.secondaryYellowColor,
-          borderRadius: BorderRadius.circular(8.0),
+          color: AppColors.purchaseCardColor,
+          borderRadius: BorderRadius.circular(8.sp),
           boxShadow: const [
             BoxShadow(
               color: AppColors.bodyNeutralColor,
-              spreadRadius: 2,
-              blurRadius: 5,
+              spreadRadius: 1,
+              blurRadius: 4,
             ),
           ],
         ),
@@ -63,65 +70,67 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
               children: [
                 Text(
                   widget.planName,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  style: TextStyle(
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 4.0),
+                SizedBox(height: 4.h),
                 Text(
                   '${widget.classesPerMonth} classes in a month',
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(
+                      fontSize: 14.sp, color: AppColors.bodyNeutralColor),
                 ),
-                const SizedBox(height: 8.0),
+                SizedBox(height: 8.h),
+                HyperlinkText(
+                  text: "View Details",
+                  onPressed: () {},
+                ),
+                SizedBox(height: 8.h),
                 Row(
                   children: [
                     Text(
                       '₹${widget.originalPrice}',
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: 14.sp,
                         color: Colors.grey,
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
-                    const SizedBox(width: 8.0),
+                    SizedBox(width: 8.w),
                     Text(
                       '₹${widget.discountedPrice}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                      style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.titleHeadingColor),
                     ),
                     const SizedBox(width: 8.0),
                     Text(
                       '${widget.discountPercentage}% Off',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.green,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: AppColors.popupGreenColor,
                       ),
                     ),
                   ],
                 ),
                 if (isExpanded) ...[
-                  const SizedBox(height: 16.0),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Handle purchase action
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.brown,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      child: const Text('Purchase Now'),
-                    ),
-                  ),
+                  SizedBox(height: 16.h),
+                  PrimaryButton(
+                      text: "Purchase Now",
+                      onPressed: () {},
+                      width: 120.w,
+                      height: 40.h,
+                      fontSize: 14.sp,
+                      buttonColor: AppColors.primaryBrownColor,
+                      buttonTextColor: AppColors.primaryWhiteColor)
                 ],
               ],
             ),
+            GradientButton(
+              text: widget.gradientTagText,
+            )
           ],
         ),
       ),

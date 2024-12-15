@@ -37,6 +37,7 @@ class ResetPasswordScreen extends StatelessWidget {
             onPressed: () {},
             width: double.infinity,
             height: 50.h,
+            fontSize: 16.sp,
             buttonColor: AppColors.primaryBrownColor,
             buttonTextColor: AppColors.primaryWhiteColor,
           ),

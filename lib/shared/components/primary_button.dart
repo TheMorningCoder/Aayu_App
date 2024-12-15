@@ -1,3 +1,4 @@
+import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -6,6 +7,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final double width;
   final double height;
+  final double fontSize;
   final Color buttonColor;
   final Color buttonTextColor;
 
@@ -15,6 +17,7 @@ class PrimaryButton extends StatelessWidget {
     required this.onPressed,
     required this.width,
     required this.height,
+    required this.fontSize,
     required this.buttonColor,
     required this.buttonTextColor,
   });
@@ -32,14 +35,21 @@ class PrimaryButton extends StatelessWidget {
           border: Border.all(
             color: Colors.grey,
           ),
+          boxShadow: const [
+            BoxShadow(
+              color: AppColors.bodyNeutralColor,
+              spreadRadius: 1,
+              blurRadius: 4,
+            ),
+          ],
         ),
         alignment: Alignment.center,
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 16.sp,
+            fontSize: fontSize,
             color: buttonTextColor,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

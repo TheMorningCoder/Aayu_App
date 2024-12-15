@@ -28,6 +28,7 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
           decoration:
               const BoxDecoration(color: AppColors.lighterBrownBackgroundColor),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Top Bar Section
               SizedBox(height: 14.h),
@@ -37,7 +38,25 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
 
               // Alert Bar
               const AlertBar(text: ". The pilates center is closed today"),
-              SizedBox(height: 20.h),
+              SizedBox(height: 14.h),
+              Text(
+                "Purchase Plans",
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.titleHeadingColor,
+                ),
+              ),
+              Text(
+                "Checkout different plans and start your fitness journey now",
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.bodyNeutralColor,
+                ),
+              ),
+              SizedBox(height: 14.h),
+
               const PurchasePlanCard(
                 planName: 'Gold Plan',
                 originalPrice: 3999,
@@ -45,6 +64,8 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
                 discountPercentage: 20,
                 classesPerMonth: 25,
                 imagePath: 'assets/gold_plan.png',
+                gradientTagIsVisible: false,
+                gradientTagText: "",
               ),
               const PurchasePlanCard(
                 planName: 'Platinum Plan',
@@ -53,6 +74,8 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
                 discountPercentage: 20,
                 classesPerMonth: 25,
                 imagePath: 'assets/platinum_plan.png',
+                gradientTagIsVisible: true,
+                gradientTagText: "Popular",
               ),
               const PurchasePlanCard(
                 planName: 'Diamond Plan',
@@ -61,6 +84,8 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
                 discountPercentage: 20,
                 classesPerMonth: 25,
                 imagePath: 'assets/diamond_plan.jpg',
+                gradientTagIsVisible: true,
+                gradientTagText: "Money Saver",
               ),
 
               // LayoutBuilder(

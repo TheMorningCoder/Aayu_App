@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Stats Card Widget
 class StatsCard extends StatelessWidget {
+  const StatsCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ReusableCard(
@@ -23,7 +25,10 @@ class StatsCard extends StatelessWidget {
                   color: AppColors.titleHeadingColor,
                 ),
               ),
-              const HyperlinkText(text: "see more"),
+              HyperlinkText(
+                text: "see more",
+                onPressed: () {},
+              ),
             ],
           ),
           SizedBox(height: 10.h),

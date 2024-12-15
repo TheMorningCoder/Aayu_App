@@ -23,4 +23,7 @@ class AppColors {
   static const Color paleBrownBackgroundColor = Color(0xFFF3EEEB);
   static const Color popupGreenColor = Color(0xFF2C8F52);
   static const Color calendarBackgroundColor = Color(0xFFFFFDFA);
+  static const Color purchaseCardColor = Color(0xFFfefbf6);
+  static const Color fieryRedGradientButtonColor = Color(0xFFFF3E3E);
+  static const Color bubblegumPinkGradientButtonColor = Color(0xFFFF76AD);
 }

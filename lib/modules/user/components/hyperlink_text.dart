@@ -6,8 +6,10 @@ class HyperlinkText extends StatelessWidget {
   const HyperlinkText({
     super.key,
     required this.text,
+    required this.onPressed,
   });
   final String text;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {

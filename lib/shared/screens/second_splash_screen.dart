@@ -56,6 +56,7 @@ class SecondSplashScreen extends StatelessWidget {
                 PrimaryButton(
                   height: ScreenUtil().screenHeight * 0.06,
                   width: double.infinity,
+                  fontSize: 16.sp,
                   text: 'Continue to Login',
                   buttonColor: AppColors.primaryWhiteColor,
                   buttonTextColor: AppColors.primaryBrownColor,

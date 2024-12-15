@@ -197,6 +197,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       width: double.infinity,
                       height: 50.h,
+                      fontSize: 16.sp,
                       buttonColor: AppColors.primaryBrownColor,
                       buttonTextColor: AppColors.primaryWhiteColor,
                     ),

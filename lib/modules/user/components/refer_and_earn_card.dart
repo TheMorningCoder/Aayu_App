@@ -38,6 +38,7 @@ class ReferAndEarnCard extends StatelessWidget {
                   onPressed: () {},
                   width: 150.w,
                   height: 50.h,
+                  fontSize: 16.sp,
                   buttonColor: AppColors.primaryBrownColor,
                   buttonTextColor: AppColors.primaryWhiteColor),
               Image.asset("assets/campaign.png"),

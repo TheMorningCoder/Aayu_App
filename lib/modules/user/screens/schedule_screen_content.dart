@@ -136,6 +136,7 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                   onPressed: scheduleClass,
                   width: double.infinity,
                   height: 50.h,
+                  fontSize: 16.sp,
                   buttonColor: AppColors.primaryBrownColor,
                   buttonTextColor: AppColors.primaryWhiteColor,
                 ),
@@ -152,7 +153,10 @@ class ScheduleScreenContentState extends State<ScheduleScreenContent> {
                       color: AppColors.titleHeadingColor,
                     ),
                   ),
-                  const HyperlinkText(text: "see more"),
+                  HyperlinkText(
+                    text: "see more",
+                    onPressed: () {},
+                  ),
                 ],
               ),
 

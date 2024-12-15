@@ -31,7 +31,10 @@ class CommunityMilestoneCard extends StatelessWidget {
                 color: AppColors.titleHeadingColor,
               ),
             ),
-            const HyperlinkText(text: "see more"),
+            HyperlinkText(
+              text: "see more",
+              onPressed: () {},
+            ),
           ],
         ),
         SizedBox(height: 10.h),
