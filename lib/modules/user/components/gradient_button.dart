@@ -22,7 +22,7 @@ class GradientButton extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(2),
         boxShadow: [
           BoxShadow(
             // ignore: deprecated_member_use
@@ -40,7 +40,7 @@ class GradientButton extends StatelessWidget {
           text,
           style: TextStyle(
             color: AppColors.primaryWhiteColor,
-            fontSize: 18.sp,
+            fontSize: 10.sp,
             fontWeight: FontWeight.bold,
           ),
         ),

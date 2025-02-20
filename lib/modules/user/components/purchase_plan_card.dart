@@ -128,9 +128,10 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                 ],
               ],
             ),
-            GradientButton(
-              text: widget.gradientTagText,
-            )
+            if (widget.gradientTagIsVisible)
+              GradientButton(
+                text: widget.gradientTagText,
+              ),
           ],
         ),
       ),
