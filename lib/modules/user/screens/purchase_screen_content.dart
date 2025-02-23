@@ -1,13 +1,7 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/alert_bar.dart';
-import 'package:aayu_app/modules/user/components/hyperlink_text.dart';
 import 'package:aayu_app/modules/user/components/purchase_plan_card.dart';
-import 'package:aayu_app/modules/user/components/schedule_class_card.dart';
-import 'package:aayu_app/modules/user/data/scheduled_class_data.dart';
-import 'package:aayu_app/modules/user/screens/popups/informational_popup.dart';
-import 'package:aayu_app/shared/components/primary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aayu_app/modules/user/components/top_name_bar.dart';
 
