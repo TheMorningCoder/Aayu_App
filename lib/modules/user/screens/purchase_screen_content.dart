@@ -36,7 +36,7 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
               Text(
                 "Purchase Plans",
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   color: AppColors.titleHeadingColor,
                 ),
@@ -44,7 +44,7 @@ class PurchaseScreenContentState extends State<PurchaseScreenContent> {
               Text(
                 "Checkout different plans and start your fitness journey now",
                 style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                   color: AppColors.bodyNeutralColor,
                 ),

@@ -1,3 +1,5 @@
+import 'package:aayu_app/modules/user/screens/account_settings.dart';
+import 'package:aayu_app/modules/user/screens/purchase_history.dart';
 import 'package:aayu_app/modules/user/screens/user_homescreen.dart';
 import 'package:aayu_app/shared/screens/first_splash_screen.dart';
 import 'package:aayu_app/shared/screens/forget_password_screen.dart';
@@ -17,6 +19,8 @@ class Routes {
   static const String signUpScreen = '/signup-screen';
   static const String adminDashboard = '/admin-dashboard';
   static const String userHomeScreen = '/user-homescreen';
+  static const String accountSettings = '/account-settings';
+  static const String purchaseHistory = '/purchase-history';
 }
 
 // Configure the route map
@@ -43,6 +47,12 @@ class RouteGenerator {
 
       case Routes.userHomeScreen:
         return MaterialPageRoute(builder: (_) => const UserHomeScreen());
+
+      case Routes.accountSettings:
+        return MaterialPageRoute(builder: (_) => const AccountSettingsScreen());
+
+      case Routes.purchaseHistory:
+        return MaterialPageRoute(builder: (_) => const PurchaseHistoryScreen());
 
       default:
         return _errorRoute();

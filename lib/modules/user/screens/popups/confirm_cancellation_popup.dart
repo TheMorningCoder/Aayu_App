@@ -5,7 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ConfirmCancellationPopup extends StatelessWidget {
-  const ConfirmCancellationPopup({super.key});
+  final String heading;
+  final String firstDescription;
+  final String secondDescription;
+  final String buttonText;
+  final VoidCallback onPressed;
+  const ConfirmCancellationPopup({
+    super.key,
+    required this.heading,
+    required this.firstDescription,
+    required this.secondDescription,
+    required this.buttonText,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +39,7 @@ class ConfirmCancellationPopup extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Confirm Cancellation",
+                  heading,
                   style: TextStyle(
                     color: AppColors.titleHeadingColor,
                     fontSize: 18.sp,
@@ -46,7 +58,7 @@ class ConfirmCancellationPopup extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              "The reservation occurs within 12 hours, cancelling will incur a late cancellation fee",
+              firstDescription,
               style: TextStyle(
                 color: AppColors.bodyNeutralColor,
                 fontSize: 14.sp,
@@ -59,7 +71,7 @@ class ConfirmCancellationPopup extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              "We will refund your 9 Credits",
+              secondDescription,
               style: TextStyle(
                 color: AppColors.titleHeadingColor,
                 fontSize: 14.sp,
@@ -68,23 +80,8 @@ class ConfirmCancellationPopup extends StatelessWidget {
             ),
             SizedBox(height: 20.h),
             CancelButton(
-              buttonText: "Cancel Class",
-              onPressed: () {
-                Navigator.of(context).pop();
-                showDialog(
-                  context: context,
-                  builder: (context) => InformationalPopup(
-                    icon: Icons.cancel,
-                    iconColor: AppColors.redCancelButtonFontColor,
-                    heading: "Cancelled!",
-                    description: "Your scheduled class is cancelled",
-                    buttonText: "Go Back",
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                );
-              },
+              buttonText: buttonText,
+              onPressed: onPressed,
             ),
           ],
         ),

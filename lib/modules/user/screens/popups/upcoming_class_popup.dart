@@ -1,6 +1,7 @@
 import 'package:aayu_app/core/themes/app_colors.dart';
 import 'package:aayu_app/modules/user/components/cancel_button.dart';
 import 'package:aayu_app/modules/user/screens/popups/confirm_cancellation_popup.dart';
+import 'package:aayu_app/modules/user/screens/popups/informational_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -86,7 +87,28 @@ class UpcomingClassPopup extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return const ConfirmCancellationPopup();
+                    return ConfirmCancellationPopup(
+                        heading: "Confirm Cancellation",
+                        firstDescription:
+                            "The reservation occurs within 12 hours, cancelling will incur a late cancellation fee",
+                        secondDescription: "We will refund your 9 Credits",
+                        buttonText: "Cancel Class",
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          showDialog(
+                            context: context,
+                            builder: (context) => InformationalPopup(
+                              icon: Icons.cancel,
+                              iconColor: AppColors.redCancelButtonFontColor,
+                              heading: "Cancelled!",
+                              description: "Your scheduled class is cancelled",
+                              buttonText: "Go Back",
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          );
+                        });
                   },
                 );
               },

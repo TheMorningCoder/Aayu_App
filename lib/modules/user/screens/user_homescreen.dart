@@ -1,4 +1,5 @@
 import 'package:aayu_app/modules/user/screens/home_screen_content.dart';
+import 'package:aayu_app/modules/user/screens/more_screen_content.dart';
 import 'package:aayu_app/modules/user/screens/purchase_screen_content.dart';
 import 'package:aayu_app/modules/user/screens/schedule_screen_content.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     // Purchase Screen
     const PurchaseScreenContent(),
     // More Options Screen
-    const Center(
-        child: Text('More Options Screen', style: TextStyle(fontSize: 20))),
+    const MoreScreenContent()
   ];
 
   void _onTabTapped(int index) {

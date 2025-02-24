@@ -30,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: buttonColor,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             color: Colors.grey,
           ),
@@ -38,7 +38,7 @@ class PrimaryButton extends StatelessWidget {
             BoxShadow(
               color: AppColors.bodyNeutralColor,
               spreadRadius: 1,
-              blurRadius: 4,
+              blurRadius: 2,
             ),
           ],
         ),

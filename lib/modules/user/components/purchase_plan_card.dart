@@ -63,7 +63,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
             Image.asset(
               widget.imagePath,
               width: 50.w,
-              height: 50.h,
+              height: 45.h,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +71,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                 Text(
                   widget.planName,
                   style: TextStyle(
-                    fontSize: 18.sp,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -79,7 +79,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                 Text(
                   '${widget.classesPerMonth} classes in a month',
                   style: TextStyle(
-                      fontSize: 14.sp, color: AppColors.bodyNeutralColor),
+                      fontSize: 12.sp, color: AppColors.bodyNeutralColor),
                 ),
                 SizedBox(height: 8.h),
                 HyperlinkText(
@@ -92,7 +92,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                     Text(
                       '₹${widget.originalPrice}',
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                         color: Colors.grey,
                         decoration: TextDecoration.lineThrough,
                       ),
@@ -101,7 +101,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                     Text(
                       '₹${widget.discountedPrice}',
                       style: TextStyle(
-                          fontSize: 16.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.titleHeadingColor),
                     ),
@@ -109,7 +109,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                     Text(
                       '${widget.discountPercentage}% Off',
                       style: TextStyle(
-                        fontSize: 14.sp,
+                        fontSize: 12.sp,
                         color: AppColors.popupGreenColor,
                       ),
                     ),
@@ -122,7 +122,7 @@ class PurchasePlanCardState extends State<PurchasePlanCard> {
                       onPressed: () {},
                       width: 120.w,
                       height: 40.h,
-                      fontSize: 14.sp,
+                      fontSize: 12.sp,
                       buttonColor: AppColors.primaryBrownColor,
                       buttonTextColor: AppColors.primaryWhiteColor)
                 ],
